@@ -1,0 +1,13 @@
+service:
+  s3-manager-backend
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  memorySize: 128
+  stage: ${opt:stage, 'dev'}
+  region: ${self:custom.regions.${self:provider.stage}}
+  environment: ${file(ymls/environment.yml)}
+
+custom: ${file(ymls/custom.yml)}
+functions: ${file(ymls/functions.yml)}
